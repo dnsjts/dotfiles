@@ -1,0 +1,78 @@
+[advice]
+	addEmbeddedRepo                   = false
+	amWorkDir                         = false
+	checkoutAmbiguousRemoteBranchName = false
+	commitBeforeMerge                 = false
+	detachedHead                      = false
+	ignoredHook                       = false
+	implicitIdentity                  = false
+	nestedTag                         = false
+	pushAlreadyExists                 = false
+	pushFetchFirst                    = false
+	pushNeedsForce                    = false
+	pushNonFFCurrent                  = false
+	pushNonFFMatching                 = false
+	pushUnqualifiedRefname            = false
+	pushUpdateRejected                = false
+	resetQuiet                        = false
+	resolveConflict                   = false
+	rmHints                           = false
+	statusHints                       = false
+	statusUoption                     = false
+	waitingForEditor                  = false
+[alias]
+	graphviz = "!f() { echo 'digraph git { graph [concentrate=true]\n' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+	yeet = push
+	yoink = pull --ff-only
+	yolo = "!git commit --message \"reword! $(curl --silent --fail http://whatthecommit.com/index.txt) [skip ci]\n\nDISCLAIMER: this commit message has been retrieved from whatthecommit.com.\""
+[color]
+	ui = "auto"
+[column]
+	ui = "auto,dense"
+[commit]
+	gpgSign = true
+	verbose = 2
+[core]
+	editor = "nvim"
+[diff]
+	algorithm           = "patience"
+	compactionHeuristic = true
+	renames             = "copies"
+	tool                = "meld"
+[difftool]
+    prompt = false
+[fetch]
+	output            = "compact"
+	prune             = true
+	pruneTags         = true
+	recurseSubmodules = true
+[filter "lfs"]
+	clean    = "git-lfs clean -- %f"
+	process  = "git-lfs filter-process"
+	required = true
+	smudge   = "git-lfs smudge -- %f"
+[grep]
+	extendedRegexp = true
+	lineNumber     = true
+[gui]
+	historybrowser = "qgit"
+[help]
+	autocorrect = 50
+[log]
+	decorate = "short"
+[merge]
+	tool = "meld"
+[push]
+	default = "simple"
+[rebase]
+	missingCommitsCheck = "warn"
+	stat                = true
+[rerere]
+	autoupdate = true
+	enabled    = true
+[submodule]
+	recurse = true
+[tag]
+	sort = version:refname
+[url "ssh://git@github.com/"]
+	pushInsteadOf = "https://github.com/"
