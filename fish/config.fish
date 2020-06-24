@@ -19,6 +19,7 @@ if status --is-interactive
     abbr --add --global gmt  git mergetool
     abbr --add --global gpf  git push --force-with-lease
     abbr --add --global gp   git push
+    abbr --add --global gpd  'git push --delete origin (git rev-parse --abbrev-ref HEAD)'
     abbr --add --global gpm  git push origin HEAD:master
     abbr --add --global gra  git rebase --abort
     abbr --add --global grc  git rebase --continue
