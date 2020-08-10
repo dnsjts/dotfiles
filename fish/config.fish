@@ -2,6 +2,7 @@ set PATH ~/.cargo/bin /bin /sbin /usr/sbin /usr/bin $PATH
 set -gx EDITOR  nvim
 set -gx GPG_TTY (tty)
 set -gx VISUAL  nvim
+set -gx MANPAGER nvimpager
 
 # Bob the fish theme settings
 set theme_color_scheme        zenburn
@@ -12,8 +13,10 @@ set theme_newline_cursor      yes
 set theme_show_exit_status    yes
 
 if status --is-interactive
-    abbr --add --global bx   ibmcloud
     abbr --add --global g    git
+    abbr --add --global gcp  git cherry-pick
+    abbr --add --global gcpa git cherry-pick --abort
+    abbr --add --global gcpc git cherry-pick --continue
     abbr --add --global gl   git log
     abbr --add --global glp  git log --patch
     abbr --add --global gmt  git mergetool
@@ -30,6 +33,7 @@ if status --is-interactive
     abbr --add --global ls   exa
     abbr --add --global r    rsync --verbose --progress --recursive -z -z
     abbr --add --global s    sudo
+    abbr --add --global se   sudoedit
     abbr --add --global yeet rm
 
     if which sccache
