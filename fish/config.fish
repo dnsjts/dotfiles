@@ -1,8 +1,14 @@
 set PATH ~/.cargo/bin /bin /sbin /usr/sbin /usr/bin $PATH
-set -gx EDITOR  nvim
 set -gx GPG_TTY (tty)
-set -gx VISUAL  nvim
-set -gx MANPAGER nvimpager
+
+if which nvim
+    set -gx EDITOR  nvim
+    set -gx VISUAL  nvim
+end
+
+if which nvimpager
+    set -gx MANPAGER nvimpager
+end
 
 # Bob the fish theme settings
 set theme_color_scheme        zenburn
