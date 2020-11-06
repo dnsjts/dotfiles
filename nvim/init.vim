@@ -73,6 +73,7 @@ let g:LanguageClient_serverCommands = {
     \ 'bash'  : ['bash-language-server', 'start'],
     \ 'c'     : ['clangd'],
     \ 'cpp'   : ['clangd'],
+    \ 'java'  : ['jdtls'],
     \ 'go'    : ['gopls', 'serve'],
     \ 'python': ['pyls'],
     \ 'rust'  : ['rustup', 'run', 'stable', 'rls'],

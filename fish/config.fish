@@ -1,15 +1,6 @@
 set PATH ~/.cargo/bin /bin /sbin /usr/sbin /usr/bin $PATH
 set -gx GPG_TTY (tty)
 
-if which nvim
-    set -gx EDITOR  nvim
-    set -gx VISUAL  nvim
-end
-
-if which nvimpager
-    set -gx MANPAGER nvimpager
-end
-
 # Bob the fish theme settings
 set theme_color_scheme        zenburn
 set theme_display_hostname    yes
@@ -19,6 +10,15 @@ set theme_newline_cursor      yes
 set theme_show_exit_status    yes
 
 if status --is-interactive
+    if which nvim
+        set -gx EDITOR  nvim
+        set -gx VISUAL  nvim
+    end
+
+    if which nvimpager
+        set -gx MANPAGER nvimpager
+    end
+
     abbr --add --global g    git
     abbr --add --global gcp  git cherry-pick
     abbr --add --global gcpa git cherry-pick --abort
