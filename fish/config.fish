@@ -19,6 +19,18 @@ if status --is-interactive
         set -gx MANPAGER nvimpager
     end
 
+    if which bat
+        abbr --add --global cat bat
+    end
+
+    if which rg
+        abbr --add --global grep rg
+    end
+
+    if which exa
+        abbr --add --global ls   exa
+    end
+
     abbr --add --global g    git
     abbr --add --global gcp  git cherry-pick
     abbr --add --global gcpa git cherry-pick --abort
@@ -33,10 +45,8 @@ if status --is-interactive
     abbr --add --global gra  git rebase --abort
     abbr --add --global grc  git rebase --continue
     abbr --add --global grhh git reset --hard HEAD
-    abbr --add --global grep rg
     abbr --add --global gr   git rebase
     abbr --add --global gri  git rebase --interactive
-    abbr --add --global ls   exa
     abbr --add --global r    rsync --verbose --progress --recursive -z -z
     abbr --add --global s    sudo
     abbr --add --global se   sudoedit
