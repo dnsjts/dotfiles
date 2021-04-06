@@ -9,8 +9,9 @@ Plug 'sjl/badwolf'
 Plug 'shougo/echodoc.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
-Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+"Plug 'dense-analysis/ale'
 Plug 'valloric/listtoggle'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
@@ -46,7 +47,9 @@ set completeopt=noinsert,menuone,noselect
 set formatexpr=LanguageClient#textDocument_rangeFormatting_sync
 "set omnifunc=LanguageClient#complete
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
+
+inoremap <silent><expr> <c-space> coc#refresh()
 
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -64,23 +67,8 @@ let g:airline#extensions#tabline#enabled      = 1
 let g:airline#extensions#tabline#left_sep     = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save        = 1
-let g:ale_fixers             = { 'rust': ['rustfmt']}
-let g:ale_linters            = { 'rust': ['rls', 'cargo', 'rustc']}
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let g:LanguageClient_serverCommands = {
-    \ 'bash'  : ['bash-language-server', 'start'],
-    \ 'c'     : ['clangd'],
-    \ 'cpp'   : ['clangd'],
-    \ 'java'  : ['jdtls'],
-    \ 'go'    : ['gopls', 'serve'],
-    \ 'python': ['pyls'],
-    \ 'rust'  : ['rustup', 'run', 'stable', 'rls'],
-    \ 'sh'    : ['bash-language-server', 'start'],
-    \ }
-
-let g:LanguageClient_autoStart = 1
 map <C-n>              :NERDTreeToggle<CR>
 map <Leader>C          :Commands<CR>
 map <Leader>F          :Files<CR>
@@ -91,12 +79,26 @@ map <Leader>M          :Maps<CR>
 map <Leader>:          :History:<CR>
 map <Leader>/          :History/<CR>
 nnoremap <F5>          :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-"nnoremap <silent> K    :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> K    :ALEHover<CR>
+nmap <F2> <Plug>(coc-rename)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 nnoremap <silent> Q    :call LanguageClient_textDocument_formatting()<CR>
-nnoremap <silent> gd   :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> gr   :call LanguageClient_textDocument_references()<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 filetype plugin indent on     " required!
 
