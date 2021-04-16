@@ -24,7 +24,7 @@
 	graphviz = "!f() { echo 'digraph git { graph [concentrate=true]\n' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
 	yeet = push
 	yoink = pull --ff-only
-	yolo = "!git commit --message \"reword! $(curl --silent --fail http://whatthecommit.com/index.txt) [skip ci]\n\nDISCLAIMER: this commit message has been retrieved from whatthecommit.com.\""
+	yolo = "!git commit --no-gpg-sign --message \"reword! $(curl --silent --fail http://whatthecommit.com/index.txt) [skip ci]\n\nDISCLAIMER: this commit message has been retrieved from whatthecommit.com.\""
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 lg = !"git lg1"
@@ -81,3 +81,13 @@ lg = !"git lg1"
 	sort = version:refname
 [url "ssh://git@github.com/"]
 	pushInsteadOf = "https://github.com/"
+[maintenance "gc"]
+	enabled = true
+[maintenance "incremental-repack"]
+	enabled = true
+[maintenance "loose-objects"]
+	enabled = true
+[maintenance "prefetch"]
+	enabled = true
+[maintenance "commit-graph"]
+	enabled = true

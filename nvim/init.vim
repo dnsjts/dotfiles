@@ -100,6 +100,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 filetype plugin indent on     " required!
 
 set autoindent
